@@ -1,9 +1,6 @@
-"""Train LSViT for video action recognition."""
-
 from __future__ import annotations
 
 import argparse
-import json
 from pathlib import Path
 
 from lsvit_action.config import ExperimentConfig
@@ -16,50 +13,42 @@ from lsvit_action.utils.seed import set_seed
 
 
 def parse_args() -> argparse.Namespace:
-    """Parse command-line arguments."""
     parser = argparse.ArgumentParser(description="Train LSViT on HMDB51 frame folders.")
 
     parser.add_argument(
         "--data-root",
         type=str,
         default=None,
-        help="Path to processed HMDB51 frame-folder dataset.",
     )
     parser.add_argument(
         "--epochs",
         type=int,
         default=None,
-        help="Number of training epochs.",
     )
     parser.add_argument(
         "--batch-size",
         type=int,
         default=None,
-        help="Training batch size.",
     )
     parser.add_argument(
         "--num-workers",
         type=int,
         default=None,
-        help="Number of dataloader workers.",
     )
     parser.add_argument(
         "--experiment-name",
         type=str,
         default=None,
-        help="Custom experiment name.",
     )
     parser.add_argument(
         "--skip-pretrained",
         action="store_true",
-        help="Skip loading timm pretrained ViT weights.",
     )
 
     return parser.parse_args()
 
 
 def main() -> None:
-    """Main training entry point."""
     args = parse_args()
 
     config = ExperimentConfig()
