@@ -39,6 +39,9 @@ Run:
 ```
 python scripts/train.py --data-root ./data/processed/hmdb51 --epochs 10 --batch-size 4
 ```
+If you are using a GPU with limited memory or just want to run a quick test, you can adjust the hyperparameters:
+- Reduce `--batch-size` (e.g., to `1` or `2`) to avoid "Out of Memory" (OOM) errors.
+- Reduce `--epochs` (e.g., to `3` or `5`) to significantly decrease the training time. (Note: Training for fewer epochs will result in lower model accuracy).
 ## Run inference
 Put the frames of the video in `frame_folder`, then run:
 ```
