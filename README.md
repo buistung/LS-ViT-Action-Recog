@@ -15,51 +15,48 @@ This repository implements a video action recognition pipeline that includes:
 - Checkpoint saving
 - Inference on a single video clip stored as a frame folder
 
-## Project Structure
+## Requirements
+- Python 3.10+
+- pip
 
-```text
-video-action-recognition-lsvit/
-├── README.md
-├── requirements.txt
-├── .gitignore
-├── pyproject.toml
-├── notebooks/
-│   └── video-action-recognition-LSViT.ipynb
-├── data/
-│   ├── raw/
-│   └── processed/
-├── checkpoints/
-├── outputs/
-│   ├── figures/
-│   └── logs/
-├── scripts/
-│   ├── prepare_data.py
-│   ├── train.py
-│   └── predict.py
-├── src/
-│   └── lsvit_action/
-│       ├── __init__.py
-│       ├── config.py
-│       ├── constants.py
-│       ├── data/
-│       │   ├── __init__.py
-│       │   ├── dataset.py
-│       │   ├── transforms.py
-│       │   └── dataloaders.py
-│       ├── models/
-│       │   ├── __init__.py
-│       │   ├── layers.py
-│       │   ├── motion.py
-│       │   └── lsvit.py
-│       ├── engine/
-│       │   ├── __init__.py
-│       │   ├── checkpoint.py
-│       │   ├── evaluator.py
-│       │   └── trainer.py
-│       └── utils/
-│           ├── __init__.py
-│           ├── io.py
-│           ├── logging_utils.py
-│           ├── seed.py
-│           └── visualization.py
-└── tests/
+## Installation
+Clone the repository:
+```
+git clone https://github.com/buistung/LS-ViT-Action-Recog.git
+cd video-action-recognition-lsvit
+```
+Create a virtual environment:
+```
+python -m venv .venv
+source .venv/bin/activate
+```
+Install dependencies:
+```
+pip install -r requirements.txt
+```
+## Dataset Preparation
+Run:
+```
+python scripts/prepare_data.py
+```
+## Train the model
+Run:
+```
+python scripts/train.py --data-root ./data/processed/hmdb51 --epochs 10 --batch-size 4
+```
+## Run inference
+```
+python scripts/predict.py \
+  --video-dir path/to/frame_folder \
+  --checkpoint checkpoints/lsvit_hmdb51_best.pt \
+  --data-root ./data/processed/hmdb51
+```
+## Important Notes
+- This project currently uses frame folders as input, not raw `.mp4` video files.
+- To change default settings, edit:
+  - `src/lsvit_action/config.py`
+- The codebase is organized into:
+  - `data`: dataset handling, transforms, dataloaders
+  - `models`: LSViT model and related modules
+  - `engine`: training, evaluation, checkpoint handling
+  - `utils`: logging, seed control, I/O, visualization
