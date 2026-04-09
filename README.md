@@ -25,14 +25,9 @@ Clone the repository:
 git clone https://github.com/buistung/LS-ViT-Action-Recog.git
 cd video-action-recognition-lsvit
 ```
-Create a virtual environment:
-```
-python -m venv .venv
-source .venv/bin/activate
-```
 Install dependencies:
 ```
-pip install -r requirements.txt
+pip install -e .
 ```
 ## Dataset Preparation
 Run:
