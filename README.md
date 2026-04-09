@@ -45,6 +45,7 @@ Run:
 python scripts/train.py --data-root ./data/processed/hmdb51 --epochs 10 --batch-size 4
 ```
 ## Run inference
+Put the frames of the video in `frame_folder`, then run:
 ```
 python scripts/predict.py \
   --video-dir path/to/frame_folder \
